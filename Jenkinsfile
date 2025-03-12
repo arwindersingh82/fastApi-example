@@ -48,7 +48,8 @@ pipeline {
             steps {
                 sshagent(['arnieAsusMainKey']) {
                     sh """
-                    ${SSH_COMMAND} "cd /root/fastApi-example/ && docker-compose up -d --build"
+                    ${SSH_COMMAND} "cd /root/fastApi-example/ && \
+                    docker compose up -d --build"
                     """
                 }
             }
