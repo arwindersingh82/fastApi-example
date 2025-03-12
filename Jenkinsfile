@@ -40,7 +40,7 @@ pipeline {
                     sh """
                     ${SSH_COMMAND} "
                     cd /root/ && git clone ${GIT_REPO} || true && \
-                    cd /root/fastApi-example && git pull origin main
+                    cd /root/fastApi-example && git pull origin master
                     "
                     """
                 }
