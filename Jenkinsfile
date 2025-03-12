@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "fastApi"
+        DOCKER_IMAGE_WEB = "fastapi-example-web-1"
+        DOCKER_IMAGE_DB = "fastapi-example-db-1"
         DOCKER_TAG = "latest"
         DOCKER_REGISTRY = "arwindersingh82"
         LOCAL_DOCKER_HOST = "tcp://dockserv:2375"
@@ -23,8 +24,10 @@ pipeline {
                 sshagent(['arnieAsusMainKey']) {
                     sh """
                     ${SSH_COMMAND} "
-                    docker stop ${DOCKER_IMAGE} || true && \
-                    docker rm -f ${DOCKER_IMAGE} || true
+                    docker stop ${DOCKER_IMAGE_WEB} || true && \
+                    docker stop ${DOCKER_IMAGE_DB} || true && \
+                    docker rm -f ${DOCKER_IMAGE_WEB} || true && \
+                    docker rm -f ${DOCKER_IMAGE_DB} || true
                     "
                     """
                 }
